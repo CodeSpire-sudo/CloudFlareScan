@@ -1,0 +1,66 @@
+name: 🐛 Bug 报告
+description: 提交一个问题反馈
+title: "[Bug]: "
+labels: [bug, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢提交 Bug！请尽可能详细描述问题。
+
+  - type: input
+    id: version
+    attributes:
+      label: CloudFlareScan 版本
+      description: 请提供你使用的版本（Git commit SHA 或发布版本）
+      placeholder: e.g., v1.0.0 或 a1b2c3d
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 清晰简洁地描述问题是什么
+      placeholder: 当点击扫描按钮时，程序崩溃……
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 如何复现这个 Bug？
+      placeholder: |
+        1. 启动程序
+        2. 输入 IP 地址
+        3. 点击「开始扫描」
+        4. 程序闪退
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+      description: 你期望发生什么？
+      placeholder: 应该正常扫描并显示结果
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 运行环境
+      description: 操作系统、Python 版本等信息
+      placeholder: |
+        - OS: Windows 10 / Ubuntu 22.04
+        - Python: 3.10.x
+        - PySide6: 6.x.x
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 错误日志
+      description: 如果有错误信息或截图，请附上
+      render: shell

@@ -1,0 +1,22 @@
+# Auto-label PRs based on changed files
+# 参考: https://github.com/actions/labeler
+
+# 文档类变更
+"documentation":
+  - changed-files:
+      - any: ["README.md", "CONTRIBUTING.md", "docs/**", "*.md"]
+
+# 依赖变更
+"dependencies":
+  - changed-files:
+      - any: ["pyproject.toml", "requirements*.txt", "Pipfile*", ".pre-commit-config.yaml"]
+
+# CI/CD 变更
+"ci/cd":
+  - changed-files:
+      - any: [".github/**", ".releaserc.json", "renovate.json"]
+
+# 核心逻辑变更
+"core":
+  - changed-files:
+      - any: ["CloudFlareScan.py", "src/**"]
