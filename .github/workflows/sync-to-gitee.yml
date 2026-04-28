@@ -1,0 +1,28 @@
+name: 🔄 Sync to Gitee
+
+on:
+  push:
+    branches: [main, master]
+  # 也可手动触发
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 拉取全部历史
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.GITEE_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -t ed25519 gitee.com >> ~/.ssh/known_hosts
+
+      - name: Sync to Gitee
+        run: |
+          git remote add gitee git@gitee.com:neuray/CloudFlareScan.git
+          git push --force --mirror gitee
+          echo "✅ 同步完成: GitHub → Gitee"
